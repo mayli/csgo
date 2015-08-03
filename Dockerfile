@@ -8,10 +8,10 @@ USER steam
 
 # Install CS:GO
 RUN mkdir /home/steam/csgo &&\
-    cd /home/steam/steamcmd &&\
-    ./steamcmd.sh \
+    cd /home/steam &&\
+    /opt/steamcmd/steamcmd.sh \
         +login anonymous \
-        +force_install_dir ../csgo \
+        +force_install_dir ./csgo \
         +app_update 740 validate \
         +quit
 
