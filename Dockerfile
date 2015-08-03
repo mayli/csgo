@@ -16,6 +16,7 @@ RUN mkdir /home/steam/csgo &&\
 
 # Make server port available to host
 EXPOSE 27015
+EXPOSE 27015/udp
 
 # This container will be executable
 WORKDIR /home/steam/csgo
