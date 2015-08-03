@@ -2,6 +2,7 @@ FROM kmallea/steamcmd
 
 MAINTAINER Kai Mallea <kmallea@gmail.com>
 
+RUN adduser --disabled-password --gecos '' steam
 # Run commands as the steam user
 USER steam
 
