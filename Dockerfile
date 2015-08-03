@@ -1,17 +1,27 @@
-FROM kmallea/steamcmd
+FROM ubuntu:14.04
 
-MAINTAINER Kai Mallea <kmallea@gmail.com>
+MAINTAINER Mengyang Li <mayli.he@gmail.com>
+
+# Install dependencies
+RUN apt-get update &&\
+    apt-get install -y curl lib32gcc1
 
 RUN adduser --disabled-password --gecos '' steam
+
 # Run commands as the steam user
 USER steam
 
+# Download and extract SteamCMD
+RUN mkdir /home/steam/steamcmd &&\
+    cd /home/steam/steamcmd &&\
+    curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | tar -vxz
+
 # Install CS:GO
 RUN mkdir /home/steam/csgo &&\
-    cd /home/steam &&\
-    /opt/steamcmd/steamcmd.sh \
+    cd /home/steam/steamcmd &&\
+    ./steamcmd.sh \
         +login anonymous \
-        +force_install_dir ./csgo \
+        +force_install_dir ../csgo \
         +app_update 740 validate \
         +quit
 
